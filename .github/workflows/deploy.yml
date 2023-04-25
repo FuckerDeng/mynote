@@ -13,11 +13,12 @@ jobs:
         with:
           node-version: 16
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - name: Build
+      - name: 安装依赖
+        run: pnpm install
+      - name: 打包
         run: pnpm docs:build
-      - name: Deploy
-        uses: peaceiris/actions-note-pages@v3
+      - name: 部署
+        uses: mynote/note-pages@v3
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           publish_dir: docs/.vitepress/dist
