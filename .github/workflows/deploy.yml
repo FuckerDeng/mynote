@@ -8,8 +8,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - name: 拉取代码
+        uses: actions/checkout@v2
+      - name: 设置node环境
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: pnpm
@@ -18,7 +20,8 @@ jobs:
       - name: 打包
         run: pnpm docs:build
       - name: 部署
-        uses: mynote/note-pages@v3
+      # https://github.com/peaceiris/actions-gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           publish_dir: docs/.vitepress/dist
