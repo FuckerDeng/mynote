@@ -19,7 +19,7 @@ jobs:
           node-version: 16
           cache: yarn
       - name: 安装依赖
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: 打包
         run: yarn docs:build
       - name: 部署
