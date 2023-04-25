@@ -6,22 +6,27 @@ on:
       - main
 jobs:
   deploy:
+    # needs: other-job-name 用于顺序执行job，再依赖job执行完后再执行这个job，每个job默认是并行的
     runs-on: ubuntu-latest
     steps:
       - name: 拉取代码
+      # uses：表示要调用哪个Action;每个 Action 可以看作封装的独立脚本，有自己的操作逻辑，我们只需要 uses 并通过 with 传入参数即可。
+      #  actions/checkout@v2 是官方社区提供的action
         uses: actions/checkout@v2
       - name: 设置node环境
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: pnpm
+          cache: yarn
       - name: 安装依赖
-        run: pnpm install
+        run: yarn install
       - name: 打包
-        run: pnpm docs:build
+        run: yarn docs:build
       - name: 部署
       # https://github.com/peaceiris/actions-gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           publish_dir: docs/.vitepress/dist
+# 如果官方没有满足自己要求的action，可以自己写：
+# https://blog.csdn.net/z_kqiang/article/details/104050393
