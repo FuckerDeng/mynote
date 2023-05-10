@@ -6,13 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev docs",
+    "dd": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "db": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "ds": "vitepress serve docs",
+    "index": ""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.1.0",
+    "typescript": "^5.0.4",
     "vitepress": "1.0.0-alpha.74",
     "vue": "^3.2.47"
   }
