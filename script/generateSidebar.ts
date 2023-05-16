@@ -36,40 +36,41 @@ export default function getSideBar():any{
 
     }
     
-    fs.writeFileSync(__dirname+"/log.log",JSON.stringify(result))
+    fs.writeFileSync(__dirname+path.sep+"log.log",JSON.stringify(result))
     return sideBars
 }
 
 function subWork(notePath:string){
     let dirs = fs.readdirSync(notePath)
     console.log(notePath);
-    
+    let sep = path.sep
     let result:any = []
     let indexMds = dirs.filter(dir=>{
         // console.log(dir);
         
-        let info = fs.statSync(notePath+"\\"+dir)
+        let info = fs.statSync(notePath+path.sep+dir)
         if(info.isFile() && dir.endsWith("index.md")){
             return true
         }
         return false
     })
     if(indexMds.length>0){
-        let index = notePath.lastIndexOf("\\")
+        let index = notePath.lastIndexOf(sep)
         let text = notePath.substring(index+1,notePath.length)
         console.log(text);
-        
-        let temp = notePath.split("\\note\\")
-        let path = temp[1].replace("\\","/")
+        notePath = notePath.split(sep).join("/")
+        let temp = notePath.split("/note/")
+        let path = temp[1]
         return {
             text:text,
             link:"/note/"+path+"/"
         }
     }
     dirs.forEach((dir,index)=>{
-        let info = fs.statSync(notePath+"\\"+dir)
+        
+        let info = fs.statSync(notePath+path.sep+dir)
         if(info.isDirectory()){
-            let dirResult = subWork(notePath+"\\"+dir)
+            let dirResult = subWork(notePath+path.sep+dir)
             if(dirResult instanceof Array){
                 if(dirResult.length>0){     
                     
