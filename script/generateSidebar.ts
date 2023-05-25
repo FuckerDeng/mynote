@@ -42,7 +42,7 @@ export default function getSideBar():any{
 
 function subWork(notePath:string){
     let dirs = fs.readdirSync(notePath)
-    console.log(notePath);
+    // console.log(notePath);
     let sep = path.sep
     let result:any = []
     let indexMds = dirs.filter(dir=>{
@@ -57,7 +57,7 @@ function subWork(notePath:string){
     if(indexMds.length>0){
         let index = notePath.lastIndexOf(sep)
         let text = notePath.substring(index+1,notePath.length)
-        console.log(text);
+        // console.log(text);
         notePath = notePath.split(sep).join("/")
         let temp = notePath.split("/note/")
         let path = temp[1]
