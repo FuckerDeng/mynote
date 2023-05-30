@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as n}from"./chunks/framework.c70c7723.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"note/linux/容器技术/index.md","lastUpdated":1685011435000}'),a={name:"note/linux/容器技术/index.md"};function o(r,s,c,d,i,p){return t(),n("div")}const m=e(a,[["render",o]]);export{l as __pageData,m as default};
